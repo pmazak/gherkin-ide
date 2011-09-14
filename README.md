@@ -1,6 +1,7 @@
 Gherkin IDE
 ======
-
+***Requires Ruby or Groovy.***
+ 
 ----
 ## Setup:
    cd Cucumber; ruby steps-html.rb > ide.html
