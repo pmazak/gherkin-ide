@@ -12,5 +12,5 @@ Gherkin IDE
 
 ----
 ## Use:
-Open the ide.html in a browser. Begin typing. Tab will cycle to next option.  
+Open up "ide.html" in a browser. Begin typing. Tab will cycle to next option.  
 <img src="http://github.com/pmazak/gherkin-ide/raw/master/example.gif" style="border: 1px dashed gray"></img>
