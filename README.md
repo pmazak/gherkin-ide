@@ -9,4 +9,4 @@ Run:
    cd Cuke4Duke; groovy steps-html.groovy > ide.html
    
 Open the ide.html in a browser. Begin typing. Tab will cycle to next option.  
-<img src="example.gif" style="border: 1px dashed gray"></img>
+<img src="raw/master/example.gif" style="border: 1px dashed gray"></img>
