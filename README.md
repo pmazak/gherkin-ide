@@ -1,12 +1,15 @@
 Gherkin IDE
 ======
 
-Run:
+----
+## Setup:
    cd Cucumber; ruby steps-html.rb > ide.html
    
-   <or>
+   **or**
    
    cd Cuke4Duke; groovy steps-html.groovy > ide.html
-   
+
+----
+## Use:
 Open the ide.html in a browser. Begin typing. Tab will cycle to next option.  
 <img src="http://github.com/pmazak/gherkin-ide/raw/master/example.gif" style="border: 1px dashed gray"></img>
