@@ -10,6 +10,10 @@ Gherkin IDE
    
    cd Cuke4Duke; groovy steps-html.groovy > ide.html
 
+   **or**
+   
+   cd JBehave; groovy steps-html.groovy > ide.html
+
 ----
 ## Use:
 Open up "ide.html" in a browser. Begin typing. Tab will cycle to next option.  
