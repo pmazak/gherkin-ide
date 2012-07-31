@@ -82,3 +82,4 @@ def html = """
 </body>
 </html>"""
 new File("gherkin-ide.html").text = html
+println "Created gherkin-ide.html"

@@ -76,3 +76,4 @@ html = "
 output = File.new("gherkin-ide.html", "w")
 output.write(html)
 output.close
+puts "Created gherkin-ide.html"
