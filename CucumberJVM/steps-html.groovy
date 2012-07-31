@@ -28,14 +28,39 @@ steps.sort{ it.toLowerCase() }.each {
 def html = """
 <html>
 <head>
-  <script src='http://code.jquery.com/jquery-latest.js'></script>
-  <script type='text/javascript' src='http://imankulov.github.com/js/jquery.a-tools-1.4.1.js'></script>
-  <script type='text/javascript' src='http://imankulov.github.com/js/jquery.asuggest.js'></script>  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
   <script>
+  var data = "Given|When|Then|And|${writerData}".split('|');
+  function resetRows() {
+    var numLines = \$('#gherkin').val().split("\\n").length;
+    \$('#gherkin').attr("rows", numLines);
+  }
   \$(document).ready(function(){
-    var data = "Given|When|Then|And|${writerData}".split('|');
-    \$('#gherkin').asuggest(data);
-    \$('#gherkin').focus();
+    \$(window).bind('beforeunload', function(){
+      return 'WARNING: YOU WILL LOSE YOUR CHANGES!!!';
+    });
+  
+    \$('#statement').autocomplete({source: data, autoFocus: true});
+    resetRows();
+    \$('#statement').focus();
+    \$('#statement').keypress(function(e) {
+        if(e.which == 13) {
+            var oldVal = \$('#gherkin').val();
+            if (oldVal) {
+                oldVal += "\\n";
+            }
+            var newVal = \$('#statement').val();
+            if (data.indexOf(newVal) < 0) {
+                data.push(newVal);
+                \$('#statement').autocomplete("option", "source", data);
+            }
+            \$('#gherkin').val(oldVal+newVal);
+            resetRows();
+            \$('#statement').val("");
+        }
+    });    
   });
   </script>  
 </head>
@@ -45,7 +70,8 @@ def html = """
        <table>
          <tr>
           <td style='vertical-align: top'>
-           <textarea style='border: 2px solid black; background-color: #FFFFDD' id='gherkin' cols=80 rows=40 ></textarea>
+           <textarea wrap="off" style="border: 2px solid black; background-color: #FFFFDD" id="gherkin" cols="90" ></textarea>
+           <input type="text" id="statement" name="statement" size="120">          
           </td>
           <td>
             ${listData}
@@ -55,4 +81,4 @@ def html = """
     </center>
 </body>
 </html>"""
-println html
+new File("gherkin-ide.html").text = html
