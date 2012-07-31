@@ -5,8 +5,15 @@ new File(step_definition_dir).eachFileRecurse {
         it.eachLine {
             def matches = it =~ /(@)([Given|When|Then])(.*)(\(.*\"\^)(.*)(\".*\))/
             if (matches) {
-                step = matches[0][5]
-                steps << step
+                type = matches[0][2]+matches[0][3]
+                step = matches[0][5].trim()
+                if (step.endsWith("\$")) {
+                  step = step[0..step.length()-2]
+                }
+                steps << type + " " + step
+                if ("Given" == type) {
+                   steps << "And" + " " + step
+                }
             }
         }
     }
